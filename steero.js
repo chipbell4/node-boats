@@ -1,5 +1,4 @@
 var Cylon = require('cylon')
-var Boat = require('./boat')
 
 var MAX_ROT = 7
 
@@ -12,7 +11,7 @@ Cylon.robot({
   device: { name: 'sphero', driver: 'sphero' },
 
   work: function(my) {
-      var boat = new Boat(['A0', 'A1'], ['A4', 'A5'])
+      var boat = require('./initboat')
 
       my.sphero.on('connect', function() {
           my.sphero.configureLocator(0, 0, 0, 0)

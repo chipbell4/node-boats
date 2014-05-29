@@ -1,3 +1,2 @@
-var Boat = require('./boat')
-var boat = new Boat(['A0', 'A1'], ['A4', 'A5'])
+vat boat = require('./initboat')
 b.forward(0, 0)
