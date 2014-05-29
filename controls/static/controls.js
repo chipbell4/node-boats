@@ -11,12 +11,20 @@
 		var winHeight = $window.height();
 		var winWidth = $window.width();
 
+		var pageCenterX = $window.width() / 2;
+		var pageCenterY = $window.height() / 2;
+
+		var dx = pageCenterX - e.pageX;
+		var dy = pageCenterY - e.pageY;
+		var radius = Math.sqrt( dx*dx + dy*dy );
+		var theta = Math.atan2(dx, dy);
+
 		socket.emit('controls-update', {
-			x: ((e.pageX / winWidth) - 0.5) * 2,
-			y: ((e.pageY / winHeight) - 0.5) * 2
+			r: radius,
+			theta: theta,
 		});
 
-		$x.text(e.pageX);
-		$y.text(e.pageY);
+		$x.text(radius);
+		$y.text(theta);
 	}, 100));
 })();

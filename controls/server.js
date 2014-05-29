@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/static'));
 
 io.on('connection', function(socket) {
   socket.on('controls-update', function (update) {
-    console.log('coords: ', update.x, update.y);
+    console.log('coords: ', update.r, update.theta);
   });
 });
 
