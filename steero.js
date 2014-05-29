@@ -6,12 +6,13 @@ function clamp(min, x, max) {
   return Math.min(max, Math.max(min, x))
 }
 
-Cylon.robot({
-  connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
+var boat = require('./initboat')
+
+var bot = Cylon.robot({
+  connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/tty.Sphero-ROY-AMP-SPP' },
   device: { name: 'sphero', driver: 'sphero' },
 
   work: function(my) {
-      var boat = require('./initboat')
 
       my.sphero.on('connect', function() {
           my.sphero.configureLocator(0, 0, 0, 0)
@@ -34,10 +35,13 @@ Cylon.robot({
 
       my.sphero.on('locator', function(data) {
           var dir = clamp(-MAX_ROT, data[0], MAX_ROT)
-          var angle = Math.PI * dir / MAX_ROT
+          var angle = -Math.PI * dir / MAX_ROT
           var speed = 1
           console.log('STEERO!', speed, angle)
-          b.forward(speed, angle)
+          boat.forward(speed, angle)
         })
     }
-}).start()
+});
+
+console.log('Waiting...');
+setTimeout(function() { console.log('Bot starting'); bot.start(); }, 1000);
