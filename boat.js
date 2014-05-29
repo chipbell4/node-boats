@@ -45,15 +45,16 @@ Boat.prototype.rightMotor = function(speed) {
  */
 Boat.prototype.forward = function(speed, angle) {
 
-	// Convert polar co
+	var slow_speed = (1 - 2 * Math.abs(angle) / Math.PI) * speed;
+	console.log('SLOW SPEED: ' + slow_speed);
 
 	if(angle < 0) {
 		this.leftMotor(1 * speed);
-		this.rightMotor( (1 + 2 * angle / Math.PI) * speed );
+		this.rightMotor( slow_speed );
 	}
 	else {
 		this.rightMotor(1 * speed);
-		this.leftMotor( (1 - 2 * angle / Math.PI) * speed );
+		this.leftMotor( slow_speed );
 	}
 };
 
