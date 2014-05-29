@@ -41,5 +41,4 @@ Cylon.robot({
           b.forward(speed, angle)
         })
     }
-}.start()
-
+}).start()
