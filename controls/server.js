@@ -2,12 +2,21 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var Boat = require('../boat');
 
 app.use(express.static(__dirname + '/static'));
+
+var mah_boat = new Boat(['A0', 'A1'], ['A4', 'A5']);
 
 io.on('connection', function(socket) {
   socket.on('controls-update', function (update) {
     console.log('coords: ', update.r, update.theta);
+	 try {
+		 mah_boat.forward(update.r, update.theta);
+	 }
+	 catch(e) {
+	 	console.log("\tCan't connect to boat...");
+	 }
   });
 });
 
