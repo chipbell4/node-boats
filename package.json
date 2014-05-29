@@ -6,6 +6,7 @@
   "dependencies": {
     "express": "^4.3.2",
     "socket.io": "^1.0.2",
-    "spark-io": "~0.4.0"
+    "spark-io": "~0.4.0",
+    "cylon-sphero": "~0.10.0"
   }
 }
