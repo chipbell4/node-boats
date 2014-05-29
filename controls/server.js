@@ -5,7 +5,7 @@ var io = require('socket.io')(http);
 
 app.use(express.static(__dirname + '/static'));
 
-vat mah_boat = require('./initboat');
+var mah_boat = require('../initboat');
 
 io.on('connection', function(socket) {
   socket.on('controls-update', function (update) {
