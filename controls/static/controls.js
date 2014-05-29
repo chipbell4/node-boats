@@ -27,6 +27,11 @@
 		var radius = Math.sqrt( dx*dx + dy*dy );
 		var theta = Math.atan2(dx, dy);
 
+		// scale radius
+		radius = 2 * radius / Math.min(winHeight, winWidth);
+
+		radius = Math.min(1, Math.max(radius, -1));
+
 		socket.emit('controls-update', {
 			r: radius,
 			theta: theta,
