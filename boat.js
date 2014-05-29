@@ -41,16 +41,19 @@ Boat.prototype.rightMotor = function(speed) {
 };
 
 /**
- * Moves the boat forward at an angle and speed (in degrees)
+ * Moves the boat forward at an angle and speed (in radians)
  */
 Boat.prototype.forward = function(speed, angle) {
+
+	// Convert polar co
+
 	if(angle < 0) {
-		this.rightMotor(1 * speed);
-		this.leftMotor( (1 + 2 * angle / 90) * speed );
+		this.leftMotor(1 * speed);
+		this.rightMotor( (1 + 2 * angle / Math.PI) * speed );
 	}
 	else {
-		this.leftMotor(1 * speed);
-		this.rightMotor( (1 - 2 * angle / 90) * speed );
+		this.rightMotor(1 * speed);
+		this.leftMotor( (1 - 2 * angle / Math.PI) * speed );
 	}
 };
 
