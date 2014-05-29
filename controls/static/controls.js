@@ -7,15 +7,23 @@
 	var $window = $(window);
 
 	$window.on('mousemove', _.throttle(function (e) {
+		move(e.pageX, e.pageY);
+	}, 100));
 
+	$window.on('touchmove', function (e) {
+		e = e.originalEvent.touches[0];
+		move(e.pageX, e.pageY);
+	});
+
+	function move (pageX, pageY) {
 		var winHeight = $window.height();
 		var winWidth = $window.width();
 
 		var pageCenterX = $window.width() / 2;
 		var pageCenterY = $window.height() / 2;
 
-		var dx = pageCenterX - e.pageX;
-		var dy = pageCenterY - e.pageY;
+		var dx = pageCenterX - pageX;
+		var dy = pageCenterY - pageY;
 		var radius = Math.sqrt( dx*dx + dy*dy );
 		var theta = Math.atan2(dx, dy);
 
@@ -26,5 +34,5 @@
 
 		$x.text(radius);
 		$y.text(theta);
-	}, 100));
+	}
 })();
